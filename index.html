@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osama Shehab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #60a5fa;
+            --secondary-color: #93c5fd;
+            --accent-color: #38bdf8;
+            --dark-color: #111827;
+            --light-color: #1f2937;
+            --text-color: #e5e7eb;
+            --card-bg: #374151;
+            --nav-bg: rgba(17, 24, 39, 0.95);
+            --border-color: #4b5563;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--dark-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--nav-bg);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links i {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .nav-links a:hover i {
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+
+        /* Favicon styles */
+        .favicon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .cta-btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+
+        .secondary-btn {
+            border: 2px solid white;
+            color: white;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .primary-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        /* About Section */
+        .section {
+            padding: 100px 0;
+            background-color: var(--dark-color);
+        }
+
+        .section:nth-child(even) {
+            background-color: var(--light-color);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+        }
+
+        .info-list li {
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-list li i {
+            color: var(--accent-color);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            color: var(--text-color);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-category h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+
+        .skill-category h3 i {
+            font-size: 1.4rem;
+        }
+
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-item p {
+            margin: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-title i {
+            color: var(--accent-color);
+        }
+
+        .project-description {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-tag {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-tag:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+        }
+
+        .project-link:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .project-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-info {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-text h4 {
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .contact-text p {
+            color: var(--text-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--light-color);
+            color: white;
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.5rem 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            header {
+                padding: 100px 0 60px;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            .project-image-container {
+                height: 180px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Certifications Section */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .certification-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .certification-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .cert-image {
+            height: 200px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .cert-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .certification-card:hover .cert-img {
+            transform: scale(1.05);
+        }
+
+        .cert-content {
+            padding: 20px;
+        }
+
+        .cert-content h3 {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cert-content h3::before {
+            content: '🏆';
+            font-size: 1.2rem;
+        }
+
+        .cert-issuer {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .cert-date {
+            color: var(--text-color);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .cert-description {
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 1s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+               
+                OS
+            </a>
+            <ul class="nav-links">
+                <li>
+                    <a href="#about">
+                        <i class="fas fa-user"></i>
+                        نبذة
+                    </a>
+                </li>
+                <li>
+                    <a href="#skills">
+                        <i class="fas fa-code"></i>
+                        المهارات
+                    </a>
+                </li>
+                <li>
+                    <a href="#services">
+                        <i class="fas fa-project-diagram"></i>
+                        الخدمات
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact">
+                        <i class="fas fa-envelope"></i>
+                        تواصل
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <!-- <img src="./MO_n.jpg" alt="Osama Shehab" class="profile-img"> -->
+            <h1>Osama Shehab</h1>
+            <p dir="rtl">كاتب محتوى متخصص في SEO وصناعة الأفكار الإبداعية</p>
+            <div class="cta-buttons">
+                <a href="#services" class="cta-btn primary-btn">اطلع على خدماتي</a>
+                <a href="#contact" class="cta-btn secondary-btn">تواصل معي</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me – نبذة</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        اسمي أسامة شهاب، كاتب محتوى متمرس منذ 6 سنوات، أعمل على إنتاج محتوى عربي وإنجليزي عالي الجودة
+                        ومتوافق مع محركات البحث. ألّف مقالات، منشورات تواصل اجتماعي، ومحتوى تسويقي وتعليمي بأسلوب جذاب
+                        وفعّال، مع التركيز على بناء قصص مقنعة وواضحة. خبرتي السابقة كمندوب بيع مباشر طوّرت لديّ مهارات التواصل
+                        والإقناع وفهم احتياجات الجمهور، وهو ما يجعلني أصيغ محتوى يترجم أهداف العلامات التجارية إلى تجارب
+                        تفاعلية مؤثرة.
+                    </p>
+                    <ul class="info-list">
+                        <li><i class="fas fa-check-circle"></i> أوازن بين الإبداع والتحليل لضمان محتوى قابل للقياس</li>
+                        <li><i class="fas fa-check-circle"></i> أعمل مع فرق التسويق والتعليم لتنسيق المشاريع حتى التسليم</li>
+                    </ul>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">العربية</div>
+                        <p>اللغة الأم</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">الإنجليزية</div>
+                        <p>مستوى جيد جدًا</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Skills – المهارات</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-search"></i> البحث والتحليل</h3>
+                    <div class="skill-item">
+                        <p>مهارات البحث وجمع المعلومات بدقة لدعم القرارات التحريرية واستراتيجية المحتوى.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>التفكير التحليلي وحل المشكلات لربط أهداف العميل بصياغة محتوى عملي وواضح.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>متابعة اتجاهات SEO لضمان توافق المحتوى مع متطلبات محركات البحث.</p>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-comments"></i> التواصل والإبداع</h3>
+                    <div class="skill-item">
+                        <p>مهارات التواصل والإقناع لصياغة رسائل تلامس احتياجات الجمهور وتحفّز التفاعل.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>التحرير اللغوي والتدقيق الإملائي والنحوي لضمان لغة سليمة وسهلة القراءة.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>الإبداع في صياغة الأفكار والمحتوى لوسائل الإعلام والمحتوى التعليمي والتسويقي.</p>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tasks"></i> الإدارة والكفاءة</h3>
+                    <div class="skill-item">
+                        <p>القدرة على إدارة الوقت والمشاريع بكفاءة والالتزام بمواعيد التسليم.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>تنظيم سير العمل بين فرق التسويق والتعليم لضمان تناغم الرسائل عبر المنصات.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Services – الخدمات</h2>
+                <p class="about-text">أقدّم حلول كتابة وتحرير متكاملة تساعدك على بناء حضور رقمي متماسك ومؤثر.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-file-alt"></i>
+                            إنشاء مقالات ومحتوى نصي احترافي
+                        </h3>
+                        <p class="project-description">
+                            صياغة مقالات ومدوّنات وتقارير معرفية بمراجع موثوقة وبلغة تتماشى مع هوية علامتك التجارية مهما
+                            اختلف المجال.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">مقالات</span>
+                            <span class="project-tag">SEO</span>
+                            <span class="project-tag">B2B/B2C</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-share-alt"></i>
+                            محتوى تفاعلي للسوشيال ميديا
+                        </h3>
+                        <p class="project-description">
+                            كتابة منشورات وسيناريوهات قصيرة تحفّز النقاش وتدعم الحملات المدفوعة والعضوية مع مراعاة صوت
+                            العلامة التجارية.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">منشورات</span>
+                            <span class="project-tag">حملات</span>
+                            <span class="project-tag">Engagement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            محتوى تعليمي وإرشادي
+                        </h3>
+                        <p class="project-description">
+                            إعداد دروس، كتيبات ونشرات تعليمية للأطفال والكبار بأساليب مبسطة تدعم الفهم وتبقي القارئ
+                            متحمسًا للمعرفة.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">تعليم</span>
+                            <span class="project-tag">أدلة</span>
+                            <span class="project-tag">ورش</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-chart-line"></i>
+                            تحسين المحتوى لمحركات البحث
+                        </h3>
+                        <p class="project-description">
+                            مراجعة البنية والعناوين والكلمات المفتاحية لضمان توافق المحتوى مع معايير SEO ورفع فرص الظهور
+                            العضوي.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">تحليل كلمات</span>
+                            <span class="project-tag">Meta</span>
+                            <span class="project-tag">تحسين مستمر</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-check-circle"></i>
+                            مراجعة وتحرير المحتوى
+                        </h3>
+                        <p class="project-description">
+                            تدقيق لغوي ونحوي شامل، وضبط نبرة الخطاب قبل النشر لضمان أعلى جودة واتساق مع دليل الأسلوب الخاص بك.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">تحرير</span>
+                            <span class="project-tag">جودة</span>
+                            <span class="project-tag">Brand Voice</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Projects – نماذج أعمال</h2>
+                <p class="about-text">اضغط على أي بطاقة للاطلاع على تفاصيل المشروع كاملة عبر مستندات جوجل.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 1
+                        </h3>
+                        <p class="project-description">
+                            مراجعة محتوى تفصيلي مع إبراز الأسلوب السردي والنتائج المكتوبة داخل المستند.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1JUjRNuLr-9EVaraol4uQHzod3BrobsY-qqqDJIzJDos/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476078&usg=AOvVaw2Mna42Q2zMH0mJGn7vbH5M" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 2
+                        </h3>
+                        <p class="project-description">
+                            محتوى متخصص يوضح آلية الكتابة البحثية وكيفية ربطها بأهداف العميل.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1-ALy4DSNetml53DqMnUQEwCqd7abV3VIOa4MJWV8uRA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476447&usg=AOvVaw2rrZwzViSTEHxmhNAZfG2R" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 3
+                        </h3>
+                        <p class="project-description">
+                            دراسة حالة تسلط الضوء على أسلوب الشرح المبسط وتنظيم المعلومات.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1Otlnufo3nCiSZys6lCFYhOCC82KS4_7P/edit?usp%3Ddrivesdk%26ouid%3D111561375767793187873%26rtpof%3Dtrue%26sd%3Dtrue&sa=D&source=editors&ust=1764005438476685&usg=AOvVaw0d8ozSzTuIyAANF1bZUiOs" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 4
+                        </h3>
+                        <p class="project-description">
+                            نموذج مقالات يقدم مزيجًا بين البحث الدقيق والأسلوب القصصي.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1SrPVAgho9baTpynOIDE5jF4KakZAN8p4nu9gyiVyq08/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476970&usg=AOvVaw0a2AUmbkCURF44ngUz7gIR" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 5
+                        </h3>
+                        <p class="project-description">
+                            محتوى تسويقي يعرض عناوين جذابة ونبرة متسقة مع هوية العلامة.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1gW0tZP781lbo3H6CShYRldXrbxmjKKSLeOD6WB9LhhY/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477374&usg=AOvVaw2faFvpmt4vyDA3YHqQ8XTZ" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 6
+                        </h3>
+                        <p class="project-description">
+                            دليل محتوى يحاكي سيناريوهات تعليمية مبسطة وسهلة القراءة.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1gW0tZP781lbo3H6CShYRldXrbxmjKKSLeOD6WB9LhhY/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477374&usg=AOvVaw2faFvpmt4vyDA3YHqQ8XTZ" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 7
+                        </h3>
+                        <p class="project-description">
+                            محتوى تحليلي يركز على عرض الحقائق والبيانات بطريقة قصصية.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/11pNLPM3XFIIKYu7nJqO2wKvs0UZoak6qkL4PEo2njcA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477454&usg=AOvVaw3502X4r5r-1TucaN9ENo6b" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 8
+                        </h3>
+                        <p class="project-description">
+                            سلسلة تدوينات تعليمية تستعرض خطوات تنفيذية واضحة مع أمثلة تطبيقية.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1HfTmwXkvi4j-pS5UAewzSkhOvr01_Ee4B3FL4OgUfDs/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477527&usg=AOvVaw2LsjGOxwWtJ7c0v9cdt7Ub" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 9
+                        </h3>
+                        <p class="project-description">
+                            مادة تسويقية متكاملة توضح كيفية توظيف CTA مؤثر في نهاية كل جزء.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1tlpIsngw6w1Zxx8ZVUd5WuUTQB-ohqjzHcVkBXUavTA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477598&usg=AOvVaw1GH9FYVcKreAgWO7J0T33-" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 10
+                        </h3>
+                        <p class="project-description">
+                            دليل محتوى لوسائل التواصل يُظهر كيفية تحويل الأفكار إلى سلسلة منشورات.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1wiBsZ4_O6xSyDdLbw1-oFOY5NVl--7yWCj7C_-jPvgc/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477824&usg=AOvVaw0I9nRCSN7y1B4e_3Wgxau_" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 11
+                        </h3>
+                        <p class="project-description">
+                            مشروع تركيزه على كتابة صفحات هبوط مقنعة تبرز قيمة المنتج بسرعة.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/10PKU7HYRXgfRY5THXuHQ_Jm_lJd6-ox8d1btL8PAKt4/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478049&usg=AOvVaw3VXlsG_qhaw5kPwWIQbwpN" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 12
+                        </h3>
+                        <p class="project-description">
+                            مقال شامل يدمج السرد القصصي مع بيانات صلبة لإقناع القارئ.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1tD9wGSwR_bdwwfU-ZAupQFhbUiwqeHHotdWwig4FHI0/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478229&usg=AOvVaw3ty6DGMu9sX_Z_cL5zkkv9" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 13
+                        </h3>
+                        <p class="project-description">
+                            محتوى تعليمي للأطفال مع أنشطة مقترحة تساعد على التفاعل أثناء القراءة.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1HYtAV0X8g9Q66iyKFlE-vnskI4jKVsHaFCXT6ZqbbkI/edit?usp%3Dsharing&sa=D&source=editors&ust=1764005438478401&usg=AOvVaw0cNZHqdkbqlcMhkjAxoFWN" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 14
+                        </h3>
+                        <p class="project-description">
+                            كتيب تثقيفي يوضح خطوات استخدام المنتج مع نصائح مساندة.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1g_7W7Ku3DdZfUSAbn1UWUOIFNDDW8U5VeLp-SxmkQTo/edit?usp%3Dsharing&sa=D&source=editors&ust=1764005438478490&usg=AOvVaw3egYn2L7d1Hsq8493_aDLG" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 15
+                        </h3>
+                        <p class="project-description">
+                            مقالات قصيرة بأسلوب صحفي سريع تخدم الحملات التوعوية.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/108v5ksoodhsI2Qa50buqYDGuxnE3OtwLWR4CPzhKDeU/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478570&usg=AOvVaw3ryhimqHZKEq6ztbPcdOBl" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 16
+                        </h3>
+                        <p class="project-description">
+                            محتوى موجه للأهالي يشرح مفاهيم معقدة بطريقة مبسطة وفقرات قصيرة.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1Ig_NkkA5szjlV59RliOEC1lc7A9OHl_5z6nWTn5K5m0/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478648&usg=AOvVaw25ch1n6D_ZurjYMhDkCJBY" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 17
+                        </h3>
+                        <p class="project-description">
+                            سلسلة مقالات مطولة تشمل مقدمة تمهيدية وخاتمة تحفز على اتخاذ خطوة.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1p7VNpme6ntXJH552Bm0cFyt_e8p89ETW_gdmmtDwVqU/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478783&usg=AOvVaw0cda78giwDdf6jpjGOsvbw" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            مشروع 18
+                        </h3>
+                        <p class="project-description">
+                            محتوى متخصص لقطاع الأعمال يركز على إبراز العائد والنتائج الرقمية.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1K7ybV_zV4arbn-aiC0l5StE8ZIY-CkFXchabd0j6W4g/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478935&usg=AOvVaw1WrkGwxFTipW73UzHLFNlY" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> اضغط لعرض المشروع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact – تواصل معي</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p>0533295006</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>Osoosshehab@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Osama Shehab</h3>
+                    <p>كاتب محتوى يساعد العلامات التجارية على ترك أثر طويل المدى بالكلمة المكتوبة.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="mailto:Osoosshehab@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:0533295006" class="social-link"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Osama Shehab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling to navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation to elements when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        });
+
+        document.querySelectorAll('.section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // Update skill bars width on scroll
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.parentElement.previousElementSibling.lastElementChild.textContent;
+                }
+            });
+        });
+
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+    </script>
+</body>
+</html>
