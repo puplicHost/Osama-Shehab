@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osama Shehab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #60a5fa;
+            --secondary-color: #93c5fd;
+            --accent-color: #38bdf8;
+            --dark-color: #111827;
+            --light-color: #1f2937;
+            --text-color: #e5e7eb;
+            --card-bg: #374151;
+            --nav-bg: rgba(17, 24, 39, 0.95);
+            --border-color: #4b5563;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--dark-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--nav-bg);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links i {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .nav-links a:hover i {
+            transform: translateY(-2px);
+            transition: transform 0.3s ease;
+        }
+
+        /* Favicon styles */
+        .favicon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .cta-btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .primary-btn {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+
+        .secondary-btn {
+            border: 2px solid white;
+            color: white;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .primary-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        /* About Section */
+        .section {
+            padding: 100px 0;
+            background-color: var(--dark-color);
+        }
+
+        .section:nth-child(even) {
+            background-color: var(--light-color);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+        }
+
+        .info-list li {
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-list li i {
+            color: var(--accent-color);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            color: var(--text-color);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-category h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+
+        .skill-category h3 i {
+            font-size: 1.4rem;
+        }
+
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-item p {
+            margin: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-title i {
+            color: var(--accent-color);
+        }
+
+        .project-description {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-tag {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-tag:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+        }
+
+        .project-link:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .project-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-info {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-text h4 {
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .contact-text p {
+            color: var(--text-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--light-color);
+            color: white;
+            padding: 50px 0 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.5rem 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            header {
+                padding: 100px 0 60px;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            .project-image-container {
+                height: 180px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Certifications Section */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .certification-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .certification-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .cert-image {
+            height: 200px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .cert-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .certification-card:hover .cert-img {
+            transform: scale(1.05);
+        }
+
+        .cert-content {
+            padding: 20px;
+        }
+
+        .cert-content h3 {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cert-content h3::before {
+            content: '🏆';
+            font-size: 1.2rem;
+        }
+
+        .cert-issuer {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .cert-date {
+            color: var(--text-color);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .cert-description {
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 1s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+               
+                OS
+            </a>
+            <ul class="nav-links">
+                <li>
+                    <a href="#about">
+                        <i class="fas fa-user"></i>
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a href="#skills">
+                        <i class="fas fa-code"></i>
+                        Skills
+                    </a>
+                </li>
+                <li>
+                    <a href="#services">
+                        <i class="fas fa-project-diagram"></i>
+                        Services
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact">
+                        <i class="fas fa-envelope"></i>
+                        Contact
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <img src="./cover.jpg" alt="Osama Shehab" class="profile-img">
+            <h1>Osama Shehab</h1>
+            <p>Content writer specializing in SEO strategy and creative storytelling.</p>
+            <div class="cta-buttons">
+                <a href="#services" class="cta-btn primary-btn">Explore my services</a>
+                <a href="#contact" class="cta-btn secondary-btn">Contact me</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        My name is Osama Shehab, a seasoned content writer with six years of experience producing
+                        high-quality Arabic content optimized for search engines. I craft articles, social
+                        media posts, and marketing or educational assets with an engaging tone that prioritizes clear,
+                        compelling storytelling. My previous work as a direct sales representative sharpened my
+                        communication and persuasion skills and deepened my understanding of audience needs, enabling me
+                        to translate brand goals into impactful, interactive experiences.
+                    </p>
+                    <ul class="info-list">
+                        <li><i class="fas fa-check-circle"></i> I balance creativity with analysis to ensure measurable content.</li>
+                        <li><i class="fas fa-check-circle"></i> I collaborate with marketing and education teams to coordinate projects through delivery.</li>
+                    </ul>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">Arabic</div>
+                        <p>Native language</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">English</div>
+                        <p>Very good proficiency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Skills</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-search"></i> Research & Analysis</h3>
+                    <div class="skill-item">
+                        <p>Research and information-gathering skills that support editorial decisions and content strategy.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>Analytical thinking and problem-solving to connect client goals with practical, clear copy.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>Staying on top of SEO trends so content remains aligned with search engine requirements.</p>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-comments"></i> Communication & Creativity</h3>
+                    <div class="skill-item">
+                        <p>Communication and persuasion skills that shape messages around audience needs and spark interaction.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>Language editing plus spelling and grammar review to ensure an easy-to-read, polished voice.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>Creative ideation for media pieces along with educational and marketing content.</p>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tasks"></i> Operations & Efficiency</h3>
+                    <div class="skill-item">
+                        <p>Ability to manage time and projects efficiently while honoring deadlines.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>Orchestrating workflows between marketing and education teams to keep messaging aligned.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="services" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Services</h2>
+                <p class="about-text">I deliver end-to-end writing and editing solutions that build a cohesive, persuasive digital presence.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-file-alt"></i>
+                            Professional articles & long-form copy
+                        </h3>
+                        <p class="project-description">
+                            Articles, blog posts, and knowledge reports backed by credible references, voiced to mirror your brand across any industry.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Articles</span>
+                            <span class="project-tag">SEO</span>
+                            <span class="project-tag">B2B/B2C</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-share-alt"></i>
+                            Interactive social media content
+                        </h3>
+                        <p class="project-description">
+                            Posts and short-form scripts that spark conversation and support paid or organic campaigns while honoring your brand voice.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Posts</span>
+                            <span class="project-tag">Campaigns</span>
+                            <span class="project-tag">Engagement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            Educational & instructional content
+                        </h3>
+                        <p class="project-description">
+                            Lessons, handbooks, and educational newsletters for kids and adults using simplified structures that keep readers curious.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Education</span>
+                            <span class="project-tag">Guides</span>
+                            <span class="project-tag">Workshops</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-chart-line"></i>
+                            SEO content optimization
+                        </h3>
+                        <p class="project-description">
+                            Reviewing structure, headings, and keywords so each piece aligns with SEO standards and increases organic visibility.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Keyword research</span>
+                            <span class="project-tag">Meta</span>
+                            <span class="project-tag">Continuous refinement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-check-circle"></i>
+                            Content review & editing
+                        </h3>
+                        <p class="project-description">
+                            Comprehensive linguistic and grammatical editing plus tone adjustments before publishing to ensure quality and style consistency.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Editing</span>
+                            <span class="project-tag">Quality</span>
+                            <span class="project-tag">Brand Voice</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Projects – Work Samples</h2>
+                <p class="about-text">Click any card to open the full project details in Google Docs.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 1
+                        </h3>
+                        <p class="project-description">
+                            Detailed content review showcasing narrative style and the documented outcomes.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1JUjRNuLr-9EVaraol4uQHzod3BrobsY-qqqDJIzJDos/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476078&usg=AOvVaw2Mna42Q2zMH0mJGn7vbH5M" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 2
+                        </h3>
+                        <p class="project-description">
+                            Specialized copy that explains the research-writing approach and links it to client objectives.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1-ALy4DSNetml53DqMnUQEwCqd7abV3VIOa4MJWV8uRA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476447&usg=AOvVaw2rrZwzViSTEHxmhNAZfG2R" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 3
+                        </h3>
+                        <p class="project-description">
+                            Case study that highlights a simplified explanation style and structured information.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1Otlnufo3nCiSZys6lCFYhOCC82KS4_7P/edit?usp%3Ddrivesdk%26ouid%3D111561375767793187873%26rtpof%3Dtrue%26sd%3Dtrue&sa=D&source=editors&ust=1764005438476685&usg=AOvVaw0d8ozSzTuIyAANF1bZUiOs" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 4
+                        </h3>
+                        <p class="project-description">
+                            Article sample that blends rigorous research with a storytelling tone.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1SrPVAgho9baTpynOIDE5jF4KakZAN8p4nu9gyiVyq08/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476970&usg=AOvVaw0a2AUmbkCURF44ngUz7gIR" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 5
+                        </h3>
+                        <p class="project-description">
+                            Marketing content featuring catchy headlines and a voice aligned with the brand.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1gW0tZP781lbo3H6CShYRldXrbxmjKKSLeOD6WB9LhhY/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477374&usg=AOvVaw2faFvpmt4vyDA3YHqQ8XTZ" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 6
+                        </h3>
+                        <p class="project-description">
+                            Content guide that mirrors simplified educational scenarios and stays easy to read.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1gW0tZP781lbo3H6CShYRldXrbxmjKKSLeOD6WB9LhhY/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477374&usg=AOvVaw2faFvpmt4vyDA3YHqQ8XTZ" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 7
+                        </h3>
+                        <p class="project-description">
+                            Analytical piece focusing on presenting facts and data through storytelling.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/11pNLPM3XFIIKYu7nJqO2wKvs0UZoak6qkL4PEo2njcA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477454&usg=AOvVaw3502X4r5r-1TucaN9ENo6b" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 8
+                        </h3>
+                        <p class="project-description">
+                            Series of educational blog posts outlining clear action steps with practical examples.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1HfTmwXkvi4j-pS5UAewzSkhOvr01_Ee4B3FL4OgUfDs/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477527&usg=AOvVaw2LsjGOxwWtJ7c0v9cdt7Ub" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 9
+                        </h3>
+                        <p class="project-description">
+                            Integrated marketing material showing how to place an effective CTA at every section.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1tlpIsngw6w1Zxx8ZVUd5WuUTQB-ohqjzHcVkBXUavTA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477598&usg=AOvVaw1GH9FYVcKreAgWO7J0T33-" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 10
+                        </h3>
+                        <p class="project-description">
+                            Social content guide demonstrating how to turn ideas into a cohesive post series.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1wiBsZ4_O6xSyDdLbw1-oFOY5NVl--7yWCj7C_-jPvgc/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477824&usg=AOvVaw0I9nRCSN7y1B4e_3Wgxau_" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 11
+                        </h3>
+                        <p class="project-description">
+                            Focused on writing persuasive landing pages that surface product value quickly.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/10PKU7HYRXgfRY5THXuHQ_Jm_lJd6-ox8d1btL8PAKt4/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478049&usg=AOvVaw3VXlsG_qhaw5kPwWIQbwpN" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 12
+                        </h3>
+                        <p class="project-description">
+                            Comprehensive article combining storytelling with solid data to persuade the reader.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1tD9wGSwR_bdwwfU-ZAupQFhbUiwqeHHotdWwig4FHI0/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478229&usg=AOvVaw3ty6DGMu9sX_Z_cL5zkkv9" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 13
+                        </h3>
+                        <p class="project-description">
+                            Educational content for children that includes suggested activities to boost engagement.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1HYtAV0X8g9Q66iyKFlE-vnskI4jKVsHaFCXT6ZqbbkI/edit?usp%3Dsharing&sa=D&source=editors&ust=1764005438478401&usg=AOvVaw0cNZHqdkbqlcMhkjAxoFWN" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 14
+                        </h3>
+                        <p class="project-description">
+                            Educational booklet outlining product usage steps plus supporting tips.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1g_7W7Ku3DdZfUSAbn1UWUOIFNDDW8U5VeLp-SxmkQTo/edit?usp%3Dsharing&sa=D&source=editors&ust=1764005438478490&usg=AOvVaw3egYn2L7d1Hsq8493_aDLG" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 15
+                        </h3>
+                        <p class="project-description">
+                            Short journalistic articles written for awareness campaigns.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/108v5ksoodhsI2Qa50buqYDGuxnE3OtwLWR4CPzhKDeU/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478570&usg=AOvVaw3ryhimqHZKEq6ztbPcdOBl" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 16
+                        </h3>
+                        <p class="project-description">
+                            Parent-focused content that explains complex concepts with concise, accessible paragraphs.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1Ig_NkkA5szjlV59RliOEC1lc7A9OHl_5z6nWTn5K5m0/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478648&usg=AOvVaw25ch1n6D_ZurjYMhDkCJBY" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 17
+                        </h3>
+                        <p class="project-description">
+                            Long-form series featuring warm introductions and conclusions that drive action.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1p7VNpme6ntXJH552Bm0cFyt_e8p89ETW_gdmmtDwVqU/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478783&usg=AOvVaw0cda78giwDdf6jpjGOsvbw" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            Project 18
+                        </h3>
+                        <p class="project-description">
+                            Business-focused content emphasizing ROI and quantified outcomes.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1K7ybV_zV4arbn-aiC0l5StE8ZIY-CkFXchabd0j6W4g/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478935&usg=AOvVaw1WrkGwxFTipW73UzHLFNlY" class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> View project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact – Get in Touch</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p>0533295006</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>Osoosshehab@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Osama Shehab</h3>
+                    <p>Content writer helping brands leave a lasting impression with the written word.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="mailto:Osoosshehab@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:0533295006" class="social-link"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Osama Shehab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling to navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation to elements when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        });
+
+        document.querySelectorAll('.section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // Update skill bars width on scroll
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.parentElement.previousElementSibling.lastElementChild.textContent;
+                }
+            });
+        });
+
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+    </script>
+</body>
+</html>
