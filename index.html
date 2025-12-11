@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osama Shehab</title>
+    <title>أسامة شهاب</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Cairo', sans-serif;
         }
 
         :root {
@@ -89,7 +90,7 @@
             content: '';
             position: absolute;
             bottom: -5px;
-            left: 0;
+            right: 0;
             width: 0;
             height: 2px;
             background-color: var(--primary-color);
@@ -115,7 +116,7 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            margin-right: 8px;
+            margin-left: 8px;
         }
 
         /* Header Section */
@@ -427,7 +428,7 @@
 
         .project-link:hover {
             color: var(--secondary-color);
-            transform: translateX(5px);
+            transform: translateX(-5px);
         }
 
         .project-link i {
@@ -666,10 +667,266 @@
             font-size: 0.9rem;
         }
 
+        /* Gallery Section */
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border-color: var(--accent-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background-color: var(--card-bg);
+        }
+
+        .gallery-item.hide {
+            display: none;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-category {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: inline-block;
+            background-color: var(--accent-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        /* Gallery Link Items */
+        .gallery-item.link-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            min-height: 300px;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--card-bg), var(--light-color));
+            border: 2px solid var(--border-color);
+        }
+
+        .gallery-item.link-item:hover {
+            border-color: var(--accent-color);
+        }
+
+        .gallery-item.link-item .link-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item.link-item:hover .link-icon {
+            transform: scale(1.2);
+        }
+
+        .gallery-item.link-item .link-title {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .gallery-item.link-item .link-url {
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            text-align: center;
+            word-break: break-all;
+            opacity: 0.8;
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10000;
+        }
+
+        .lightbox-close:hover {
+            background-color: var(--secondary-color);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10000;
+        }
+
+        .lightbox-nav:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .animate {
@@ -677,36 +934,43 @@
         }
     </style>
 </head>
+
 <body>
     <nav>
         <div class="container nav-container">
             <a href="#" class="logo">
-               
+
                 OS
             </a>
             <ul class="nav-links">
                 <li>
                     <a href="#about">
                         <i class="fas fa-user"></i>
-                        About
+                        عني
                     </a>
                 </li>
                 <li>
                     <a href="#skills">
                         <i class="fas fa-code"></i>
-                        Skills
+                        المهارات
+                    </a>
+                </li>
+                <li>
+                    <a href="#gallery">
+                        <i class="fas fa-images"></i>
+                        معرض الأعمال
                     </a>
                 </li>
                 <li>
                     <a href="#services">
                         <i class="fas fa-project-diagram"></i>
-                        Services
+                        الخدمات
                     </a>
                 </li>
                 <li>
                     <a href="#contact">
                         <i class="fas fa-envelope"></i>
-                        Contact
+                        تواصل معي
                     </a>
                 </li>
             </ul>
@@ -715,12 +979,12 @@
 
     <header>
         <div class="container">
-            <img src="./cover.jpg" alt="Osama Shehab" class="profile-img">
-            <h1>Osama Shehab</h1>
-            <p>Content writer specializing in SEO strategy and creative storytelling.</p>
+            <img src="./cover.jpg" alt="أسامة شهاب" class="profile-img">
+            <h1>أسامة شهاب</h1>
+            <p>كاتب محتوى متخصص في استراتيجيات تحسين محركات البحث والسرد الإبداعي.</p>
             <div class="cta-buttons">
-                <a href="#services" class="cta-btn primary-btn">Explore my services</a>
-                <a href="#contact" class="cta-btn secondary-btn">Contact me</a>
+                <a href="#services" class="cta-btn primary-btn">استكشف خدماتي</a>
+                <a href="#contact" class="cta-btn secondary-btn">تواصل معي</a>
             </div>
         </div>
     </header>
@@ -728,31 +992,34 @@
     <section id="about" class="section">
         <div class="container">
             <div class="section-header">
-                <h2>About Me</h2>
+                <h2>عني</h2>
             </div>
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        My name is Osama Shehab, a seasoned content writer with six years of experience producing
-                        high-quality Arabic content optimized for search engines. I craft articles, social
-                        media posts, and marketing or educational assets with an engaging tone that prioritizes clear,
-                        compelling storytelling. My previous work as a direct sales representative sharpened my
-                        communication and persuasion skills and deepened my understanding of audience needs, enabling me
-                        to translate brand goals into impactful, interactive experiences.
+                        أقدم لكم مهارات متنوعة وممتازة في:
                     </p>
                     <ul class="info-list">
-                        <li><i class="fas fa-check-circle"></i> I balance creativity with analysis to ensure measurable content.</li>
-                        <li><i class="fas fa-check-circle"></i> I collaborate with marketing and education teams to coordinate projects through delivery.</li>
+                        <li><i class="fas fa-check-circle"></i> كتابة محتوى المدونات والمواقع متوافقة مع محركات البحث
+                            لزيادة الظهور.</li>
+                        <li><i class="fas fa-check-circle"></i> وصف تسويقي للمنتجات لجذب القراء لزيادة معدلات البيع
+                            والشراء.</li>
+                        <li><i class="fas fa-check-circle"></i> محتوى تسويقي وعمل بوستات لتعريف القراء والزائرين
+                            بالعلامة التجارية أو المنتج الذي تقدمة.</li>
+                        <li><i class="fas fa-check-circle"></i> عمل اعلانات وكتابة بوستات إعلانية وتسويقية قصيرة على
+                            السوشيال ميديا.</li>
+                        <li><i class="fas fa-check-circle"></i> كتابة محتوى مؤثر لمنصات التبرعات لحث الجمهور على التبرع
+                            ودعم القضايا الإنسانية بأسلوب بسيط وجميل يلمس المشاعر.</li>
                     </ul>
                 </div>
                 <div class="about-stats">
                     <div class="stat-item">
-                        <div class="stat-number">Arabic</div>
-                        <p>Native language</p>
+                        <div class="stat-number">عربي</div>
+                        <p>اللغة الأم</p>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">English</div>
-                        <p>Very good proficiency</p>
+                        <div class="stat-number">إنجليزي</div>
+                        <p>إتقان جيد جداً</p>
                     </div>
                 </div>
             </div>
@@ -762,67 +1029,221 @@
     <section id="skills" class="section">
         <div class="container">
             <div class="section-header">
-                <h2>Skills</h2>
+                <h2>المهارات</h2>
             </div>
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3><i class="fas fa-search"></i> Research & Analysis</h3>
+                    <h3><i class="fas fa-search"></i> البحث والتحليل</h3>
                     <div class="skill-item">
-                        <p>Research and information-gathering skills that support editorial decisions and content strategy.</p>
+                        <p>مهارات البحث وجمع المعلومات التي تدعم القرارات التحريرية واستراتيجية المحتوى.</p>
                     </div>
                     <div class="skill-item">
-                        <p>Analytical thinking and problem-solving to connect client goals with practical, clear copy.</p>
+                        <p>التفكير التحليلي وحل المشكلات لربط أهداف العميل بنصوص عملية وواضحة.</p>
                     </div>
                     <div class="skill-item">
-                        <p>Staying on top of SEO trends so content remains aligned with search engine requirements.</p>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-comments"></i> Communication & Creativity</h3>
-                    <div class="skill-item">
-                        <p>Communication and persuasion skills that shape messages around audience needs and spark interaction.</p>
-                    </div>
-                    <div class="skill-item">
-                        <p>Language editing plus spelling and grammar review to ensure an easy-to-read, polished voice.</p>
-                    </div>
-                    <div class="skill-item">
-                        <p>Creative ideation for media pieces along with educational and marketing content.</p>
+                        <p>متابعة اتجاهات تحسين محركات البحث لضمان بقاء المحتوى متوافقاً مع متطلبات محركات البحث.</p>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3><i class="fas fa-tasks"></i> Operations & Efficiency</h3>
+                    <h3><i class="fas fa-comments"></i> التواصل والإبداع</h3>
                     <div class="skill-item">
-                        <p>Ability to manage time and projects efficiently while honoring deadlines.</p>
+                        <p>مهارات التواصل والإقناع التي تشكل الرسائل حول احتياجات الجمهور وتثير التفاعل.</p>
                     </div>
                     <div class="skill-item">
-                        <p>Orchestrating workflows between marketing and education teams to keep messaging aligned.</p>
+                        <p>تحرير اللغة بالإضافة إلى مراجعة الإملاء والنحو لضمان أسلوب سهل القراءة ومصقول.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>الابتكار الإبداعي للمحتوى الإعلامي إلى جانب المحتوى التعليمي والتسويقي.</p>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tasks"></i> العمليات والكفاءة</h3>
+                    <div class="skill-item">
+                        <p>القدرة على إدارة الوقت والمشاريع بكفاءة مع احترام المواعيد النهائية.</p>
+                    </div>
+                    <div class="skill-item">
+                        <p>تنسيق سير العمل بين فرق التسويق والتعليم للحفاظ على توافق الرسائل.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="gallery" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>معرض الأعمال</h2>
+                <p class="about-text">مجموعة من نماذج أعمالي في كتابة المحتوى</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="Blog">المدونات</button>
+                <button class="filter-btn" data-filter="products">المنتجات</button>
+                <button class="filter-btn" data-filter="topworks">أعمالي المميزة</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <!-- Blog Images -->
+                <div class="gallery-item" data-category="Blog">
+                    <img src="./images/Blog/WasdasdasdhatsApp Image 2025-12-10 at 11.52.20 AM.jpeg" alt="مدونة">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المدونات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Blog">
+                    <img src="./images/Blog/WasdasdashatsApp Image 2025-12-10 at 11.52.20 AM.jpeg" alt="مدونة">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المدونات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Blog">
+                    <img src="./images/Blog/WhasdatsApp Image 2025-12-10 at 11.51.20 AM.jpeg" alt="مدونة">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المدونات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Blog">
+                    <img src="./images/Blog/WhatasdsApp Image 2025-12-10 at 11.51.21 AM.jpeg" alt="مدونة">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المدونات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Blog">
+                    <img src="./images/Blog/WhatsApp asdas 2025-12-10 at 11.51.19 AM.jpeg" alt="مدونة">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المدونات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="Blog">
+                    <img src="./images/Blog/WhatsApp asdasdasdas 2025-12-10 at 11.51.21 AM.jpeg" alt="مدونة">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المدونات</span>
+                    </div>
+                </div>
+
+                <!-- Products Images -->
+                <div class="gallery-item" data-category="products">
+                    <img src="./images/products/WhatsApp Image 2025-12-10 at 11.51.19 AM.jpeg" alt="منتجات">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المنتجات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="products">
+                    <img src="./images/products/WhatsApp Image 2025-12-10 at 11.52.21 asdasdAM.jpeg" alt="منتجات">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المنتجات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="products">
+                    <img src="./images/products/WhatsApp Image 2025-12-10 at 11.5asdasdasd2.21 AM.jpeg" alt="منتجات">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المنتجات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="products">
+                    <img src="./images/products/WhatsApp Image 2025-12-10 at 11asdasd.52.21 AM.jpeg" alt="منتجات">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المنتجات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="products">
+                    <img src="./images/products/WhatsApp Image 2025-12-10 at 1asd1.51.20 AM.jpeg" alt="منتجات">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المنتجات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="products">
+                    <img src="./images/products/WhatsApp Image 2025-12-10asdasd at 11.52.20 AM.jpeg" alt="منتجات">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المنتجات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="products">
+                    <img src="./images/products/WhatsApp Image 2025-1asd2-10 at 11.51.20 AM.jpeg" alt="منتجات">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المنتجات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="products">
+                    <img src="./images/products/WhatsApp Image 20asdasd25-12-10 at 11.52.21 AM.jpeg" alt="منتجات">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المنتجات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="products">
+                    <img src="./images/products/WhatsApp Imasdage 2025-12-10 at 11.51.20 AM.jpeg" alt="منتجات">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المنتجات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="products">
+                    <img src="./images/products/WhatsApp Imasdage 2025-12-10 at 11.51.21 AM.jpeg" alt="منتجات">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المنتجات</span>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="products">
+                    <img src="./images/products/WhatsasdasdApp Image 2025-12-10 at 11.51.21 AM.jpeg" alt="منتجات">
+                    <div class="gallery-overlay">
+                        <span class="gallery-category">المنتجات</span>
+                    </div>
+                </div>
+                <!-- Top Works Links -->
+                <a href="https://www.daralkhair.org.sa/news/%D9%83%D9%8A%D9%81%D9%8A%D8%A9-%D8%A7%D8%AE%D8%AA%D9%8A%D8%A7%D8%B1-%D8%AC%D9%85%D8%B9%D9%8A%D8%A7%D8%AA-%D8%AF%D8%B9%D9%85-%D8%A7%D9%84%D8%B7%D8%A7%D9%84%D8%A8-%D8%A7%D9%84%D8%AC%D8%A7%D9%85%D8%B9%D9%8A/"
+                    class="gallery-item link-item" data-category="topworks" target="_blank" rel="noopener">
+                    <i class="fas fa-graduation-cap link-icon"></i>
+                    <div class="link-title">كيفية اختيار جمعيات دعم الطالب الجامعي</div>
+                    <div class="link-url">daralkhair.org.sa</div>
+                </a>
+
+                <a href="https://lg.syanahegypt.com/%D8%AA%D8%B1%D9%83%D9%8A%D8%A8%D8%A7%D8%AA-%D8%BA%D8%B3%D8%A7%D9%84%D8%A7%D8%AA-lg/"
+                    class="gallery-item link-item" data-category="topworks" target="_blank" rel="noopener">
+                    <i class="fas fa-tools link-icon"></i>
+                    <div class="link-title">تركيبات غسالات LG</div>
+                    <div class="link-url">lg.syanahegypt.com</div>
+                </a>
+
+                <a href="https://ghourzahs.com/ar/blog/%D8%A3%D9%81%D8%B6%D9%84-%D9%86%D9%88%D8%B9-%D9%82%D9%85%D8%A7%D8%B4-%D9%84%D9%84%D8%B9%D8%A8%D8%A7%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D8%A1/a-2069614780"
+                    class="gallery-item link-item" data-category="topworks" target="_blank" rel="noopener">
+                    <i class="fas fa-tshirt link-icon"></i>
+                    <div class="link-title">أفضل نوع قماش للعبايات السوداء</div>
+                    <div class="link-url">ghourzahs.com</div>
+                </a>
+
+                <a href="https://aywdllsharaltbyay.com/blogs/%D8%A7%D9%86%D9%88%D8%A7%D8%B9%20%D9%88%D8%A7%D8%B4%D9%83%D8%A7%D9%84%20%D8%A7%D9%84%D8%A8%D9%88%D8%A7%D8%B1%D9%8A%D9%83"
+                    class="gallery-item link-item" data-category="topworks" target="_blank" rel="noopener">
+                    <i class="fas fa-gem link-icon"></i>
+                    <div class="link-title">أنواع وأشكال البواريك</div>
+                    <div class="link-url">aywdllsharaltbyay.com</div>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <section id="services" class="section">
         <div class="container">
             <div class="section-header">
-                <h2>Services</h2>
-                <p class="about-text">I deliver end-to-end writing and editing solutions that build a cohesive, persuasive digital presence.</p>
+                <h2>الخدمات</h2>
+                <p class="about-text">أقدم حلول كتابة وتحرير شاملة تبني حضوراً رقمياً متماسكاً ومقنعاً.</p>
             </div>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-file-alt"></i>
-                            Professional articles & long-form copy
+                            مقالات احترافية ومحتوى طويل
                         </h3>
                         <p class="project-description">
-                            Articles, blog posts, and knowledge reports backed by credible references, voiced to mirror your brand across any industry.
+                            مقالات ومنشورات مدونات وتقارير معرفية مدعومة بمراجع موثوقة، بأسلوب يعكس علامتك التجارية عبر
+                            أي صناعة.
                         </p>
                         <div class="project-tags">
-                            <span class="project-tag">Articles</span>
+                            <span class="project-tag">مقالات</span>
                             <span class="project-tag">SEO</span>
                             <span class="project-tag">B2B/B2C</span>
                         </div>
@@ -833,15 +1254,16 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-share-alt"></i>
-                            Interactive social media content
+                            محتوى تفاعلي لوسائل التواصل الاجتماعي
                         </h3>
                         <p class="project-description">
-                            Posts and short-form scripts that spark conversation and support paid or organic campaigns while honoring your brand voice.
+                            منشورات ونصوص قصيرة تثير المحادثة وتدعم الحملات المدفوعة أو العضوية مع احترام صوت علامتك
+                            التجارية.
                         </p>
                         <div class="project-tags">
-                            <span class="project-tag">Posts</span>
-                            <span class="project-tag">Campaigns</span>
-                            <span class="project-tag">Engagement</span>
+                            <span class="project-tag">منشورات</span>
+                            <span class="project-tag">حملات</span>
+                            <span class="project-tag">تفاعل</span>
                         </div>
                     </div>
                 </div>
@@ -850,15 +1272,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-graduation-cap"></i>
-                            Educational & instructional content
+                            محتوى تعليمي وإرشادي
                         </h3>
                         <p class="project-description">
-                            Lessons, handbooks, and educational newsletters for kids and adults using simplified structures that keep readers curious.
+                            دروس وكتيبات ونشرات تعليمية للأطفال والكبار باستخدام هياكل مبسطة تحافظ على فضول القراء.
                         </p>
                         <div class="project-tags">
-                            <span class="project-tag">Education</span>
-                            <span class="project-tag">Guides</span>
-                            <span class="project-tag">Workshops</span>
+                            <span class="project-tag">تعليم</span>
+                            <span class="project-tag">أدلة</span>
+                            <span class="project-tag">ورش عمل</span>
                         </div>
                     </div>
                 </div>
@@ -867,15 +1289,16 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-chart-line"></i>
-                            SEO content optimization
+                            تحسين محتوى SEO
                         </h3>
                         <p class="project-description">
-                            Reviewing structure, headings, and keywords so each piece aligns with SEO standards and increases organic visibility.
+                            مراجعة الهيكل والعناوين والكلمات المفتاحية بحيث تتوافق كل قطعة مع معايير SEO وتزيد من الظهور
+                            العضوي.
                         </p>
                         <div class="project-tags">
-                            <span class="project-tag">Keyword research</span>
-                            <span class="project-tag">Meta</span>
-                            <span class="project-tag">Continuous refinement</span>
+                            <span class="project-tag">بحث الكلمات المفتاحية</span>
+                            <span class="project-tag">ميتا</span>
+                            <span class="project-tag">تحسين مستمر</span>
                         </div>
                     </div>
                 </div>
@@ -884,15 +1307,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-check-circle"></i>
-                            Content review & editing
+                            مراجعة وتحرير المحتوى
                         </h3>
                         <p class="project-description">
-                            Comprehensive linguistic and grammatical editing plus tone adjustments before publishing to ensure quality and style consistency.
+                            تحرير لغوي ونحوي شامل بالإضافة إلى تعديلات النبرة قبل النشر لضمان الجودة واتساق الأسلوب.
                         </p>
                         <div class="project-tags">
-                            <span class="project-tag">Editing</span>
-                            <span class="project-tag">Quality</span>
-                            <span class="project-tag">Brand Voice</span>
+                            <span class="project-tag">تحرير</span>
+                            <span class="project-tag">جودة</span>
+                            <span class="project-tag">صوت العلامة التجارية</span>
                         </div>
                     </div>
                 </div>
@@ -903,22 +1326,23 @@
     <section id="projects" class="section">
         <div class="container">
             <div class="section-header">
-                <h2>Projects – Work Samples</h2>
-                <p class="about-text">Click any card to open the full project details in Google Docs.</p>
+                <h2>المشاريع – نماذج الأعمال</h2>
+                <p class="about-text">انقر على أي بطاقة لفتح تفاصيل المشروع الكاملة في مستندات Google.</p>
             </div>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 1
+                            المشروع 1
                         </h3>
                         <p class="project-description">
-                            Detailed content review showcasing narrative style and the documented outcomes.
+                            مراجعة محتوى تفصيلية تعرض أسلوب السرد والنتائج الموثقة.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1JUjRNuLr-9EVaraol4uQHzod3BrobsY-qqqDJIzJDos/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476078&usg=AOvVaw2Mna42Q2zMH0mJGn7vbH5M" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1JUjRNuLr-9EVaraol4uQHzod3BrobsY-qqqDJIzJDos/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476078&usg=AOvVaw2Mna42Q2zMH0mJGn7vbH5M"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -928,14 +1352,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 2
+                            المشروع 2
                         </h3>
                         <p class="project-description">
-                            Specialized copy that explains the research-writing approach and links it to client objectives.
+                            نص متخصص يشرح نهج الكتابة البحثية ويربطه بأهداف العميل.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1-ALy4DSNetml53DqMnUQEwCqd7abV3VIOa4MJWV8uRA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476447&usg=AOvVaw2rrZwzViSTEHxmhNAZfG2R" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1-ALy4DSNetml53DqMnUQEwCqd7abV3VIOa4MJWV8uRA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476447&usg=AOvVaw2rrZwzViSTEHxmhNAZfG2R"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -945,14 +1370,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 3
+                            المشروع 3
                         </h3>
                         <p class="project-description">
-                            Case study that highlights a simplified explanation style and structured information.
+                            دراسة حالة تسلط الضوء على أسلوب الشرح المبسط والمعلومات المنظمة.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1Otlnufo3nCiSZys6lCFYhOCC82KS4_7P/edit?usp%3Ddrivesdk%26ouid%3D111561375767793187873%26rtpof%3Dtrue%26sd%3Dtrue&sa=D&source=editors&ust=1764005438476685&usg=AOvVaw0d8ozSzTuIyAANF1bZUiOs" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1Otlnufo3nCiSZys6lCFYhOCC82KS4_7P/edit?usp%3Ddrivesdk%26ouid%3D111561375767793187873%26rtpof%3Dtrue%26sd%3Dtrue&sa=D&source=editors&ust=1764005438476685&usg=AOvVaw0d8ozSzTuIyAANF1bZUiOs"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -962,14 +1388,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 4
+                            المشروع 4
                         </h3>
                         <p class="project-description">
-                            Article sample that blends rigorous research with a storytelling tone.
+                            نموذج مقال يمزج البحث الدقيق مع أسلوب السرد القصصي.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1SrPVAgho9baTpynOIDE5jF4KakZAN8p4nu9gyiVyq08/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476970&usg=AOvVaw0a2AUmbkCURF44ngUz7gIR" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1SrPVAgho9baTpynOIDE5jF4KakZAN8p4nu9gyiVyq08/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438476970&usg=AOvVaw0a2AUmbkCURF44ngUz7gIR"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -979,14 +1406,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 5
+                            المشروع 5
                         </h3>
                         <p class="project-description">
-                            Marketing content featuring catchy headlines and a voice aligned with the brand.
+                            محتوى تسويقي يتميز بعناوين جذابة وصوت متوافق مع العلامة التجارية.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1gW0tZP781lbo3H6CShYRldXrbxmjKKSLeOD6WB9LhhY/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477374&usg=AOvVaw2faFvpmt4vyDA3YHqQ8XTZ" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1gW0tZP781lbo3H6CShYRldXrbxmjKKSLeOD6WB9LhhY/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477374&usg=AOvVaw2faFvpmt4vyDA3YHqQ8XTZ"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -996,14 +1424,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 6
+                            المشروع 6
                         </h3>
                         <p class="project-description">
-                            Content guide that mirrors simplified educational scenarios and stays easy to read.
+                            دليل محتوى يعكس سيناريوهات تعليمية مبسطة ويبقى سهل القراءة.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1gW0tZP781lbo3H6CShYRldXrbxmjKKSLeOD6WB9LhhY/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477374&usg=AOvVaw2faFvpmt4vyDA3YHqQ8XTZ" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1gW0tZP781lbo3H6CShYRldXrbxmjKKSLeOD6WB9LhhY/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477374&usg=AOvVaw2faFvpmt4vyDA3YHqQ8XTZ"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1013,14 +1442,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 7
+                            المشروع 7
                         </h3>
                         <p class="project-description">
-                            Analytical piece focusing on presenting facts and data through storytelling.
+                            قطعة تحليلية تركز على عرض الحقائق والبيانات من خلال السرد القصصي.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/11pNLPM3XFIIKYu7nJqO2wKvs0UZoak6qkL4PEo2njcA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477454&usg=AOvVaw3502X4r5r-1TucaN9ENo6b" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/11pNLPM3XFIIKYu7nJqO2wKvs0UZoak6qkL4PEo2njcA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477454&usg=AOvVaw3502X4r5r-1TucaN9ENo6b"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1030,14 +1460,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 8
+                            المشروع 8
                         </h3>
                         <p class="project-description">
-                            Series of educational blog posts outlining clear action steps with practical examples.
+                            سلسلة من منشورات المدونة التعليمية التي تحدد خطوات عمل واضحة مع أمثلة عملية.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1HfTmwXkvi4j-pS5UAewzSkhOvr01_Ee4B3FL4OgUfDs/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477527&usg=AOvVaw2LsjGOxwWtJ7c0v9cdt7Ub" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1HfTmwXkvi4j-pS5UAewzSkhOvr01_Ee4B3FL4OgUfDs/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477527&usg=AOvVaw2LsjGOxwWtJ7c0v9cdt7Ub"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1047,14 +1478,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 9
+                            المشروع 9
                         </h3>
                         <p class="project-description">
-                            Integrated marketing material showing how to place an effective CTA at every section.
+                            مادة تسويقية متكاملة توضح كيفية وضع دعوة فعالة للعمل في كل قسم.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1tlpIsngw6w1Zxx8ZVUd5WuUTQB-ohqjzHcVkBXUavTA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477598&usg=AOvVaw1GH9FYVcKreAgWO7J0T33-" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1tlpIsngw6w1Zxx8ZVUd5WuUTQB-ohqjzHcVkBXUavTA/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477598&usg=AOvVaw1GH9FYVcKreAgWO7J0T33-"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1064,14 +1496,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 10
+                            المشروع 10
                         </h3>
                         <p class="project-description">
-                            Social content guide demonstrating how to turn ideas into a cohesive post series.
+                            دليل محتوى اجتماعي يوضح كيفية تحويل الأفكار إلى سلسلة منشورات متماسكة.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1wiBsZ4_O6xSyDdLbw1-oFOY5NVl--7yWCj7C_-jPvgc/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477824&usg=AOvVaw0I9nRCSN7y1B4e_3Wgxau_" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1wiBsZ4_O6xSyDdLbw1-oFOY5NVl--7yWCj7C_-jPvgc/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438477824&usg=AOvVaw0I9nRCSN7y1B4e_3Wgxau_"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1081,14 +1514,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 11
+                            المشروع 11
                         </h3>
                         <p class="project-description">
-                            Focused on writing persuasive landing pages that surface product value quickly.
+                            يركز على كتابة صفحات هبوط مقنعة تبرز قيمة المنتج بسرعة.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/10PKU7HYRXgfRY5THXuHQ_Jm_lJd6-ox8d1btL8PAKt4/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478049&usg=AOvVaw3VXlsG_qhaw5kPwWIQbwpN" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/10PKU7HYRXgfRY5THXuHQ_Jm_lJd6-ox8d1btL8PAKt4/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478049&usg=AOvVaw3VXlsG_qhaw5kPwWIQbwpN"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1098,14 +1532,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 12
+                            المشروع 12
                         </h3>
                         <p class="project-description">
-                            Comprehensive article combining storytelling with solid data to persuade the reader.
+                            مقال شامل يجمع بين السرد القصصي والبيانات الصلبة لإقناع القارئ.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1tD9wGSwR_bdwwfU-ZAupQFhbUiwqeHHotdWwig4FHI0/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478229&usg=AOvVaw3ty6DGMu9sX_Z_cL5zkkv9" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1tD9wGSwR_bdwwfU-ZAupQFhbUiwqeHHotdWwig4FHI0/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478229&usg=AOvVaw3ty6DGMu9sX_Z_cL5zkkv9"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1115,14 +1550,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 13
+                            المشروع 13
                         </h3>
                         <p class="project-description">
-                            Educational content for children that includes suggested activities to boost engagement.
+                            محتوى تعليمي للأطفال يتضمن أنشطة مقترحة لتعزيز التفاعل.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1HYtAV0X8g9Q66iyKFlE-vnskI4jKVsHaFCXT6ZqbbkI/edit?usp%3Dsharing&sa=D&source=editors&ust=1764005438478401&usg=AOvVaw0cNZHqdkbqlcMhkjAxoFWN" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1HYtAV0X8g9Q66iyKFlE-vnskI4jKVsHaFCXT6ZqbbkI/edit?usp%3Dsharing&sa=D&source=editors&ust=1764005438478401&usg=AOvVaw0cNZHqdkbqlcMhkjAxoFWN"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1132,14 +1568,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 14
+                            المشروع 14
                         </h3>
                         <p class="project-description">
-                            Educational booklet outlining product usage steps plus supporting tips.
+                            كتيب تعليمي يحدد خطوات استخدام المنتج بالإضافة إلى نصائح داعمة.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1g_7W7Ku3DdZfUSAbn1UWUOIFNDDW8U5VeLp-SxmkQTo/edit?usp%3Dsharing&sa=D&source=editors&ust=1764005438478490&usg=AOvVaw3egYn2L7d1Hsq8493_aDLG" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1g_7W7Ku3DdZfUSAbn1UWUOIFNDDW8U5VeLp-SxmkQTo/edit?usp%3Dsharing&sa=D&source=editors&ust=1764005438478490&usg=AOvVaw3egYn2L7d1Hsq8493_aDLG"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1149,14 +1586,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 15
+                            المشروع 15
                         </h3>
                         <p class="project-description">
-                            Short journalistic articles written for awareness campaigns.
+                            مقالات صحفية قصيرة مكتوبة لحملات التوعية.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/108v5ksoodhsI2Qa50buqYDGuxnE3OtwLWR4CPzhKDeU/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478570&usg=AOvVaw3ryhimqHZKEq6ztbPcdOBl" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/108v5ksoodhsI2Qa50buqYDGuxnE3OtwLWR4CPzhKDeU/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478570&usg=AOvVaw3ryhimqHZKEq6ztbPcdOBl"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1166,14 +1604,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 16
+                            المشروع 16
                         </h3>
                         <p class="project-description">
-                            Parent-focused content that explains complex concepts with concise, accessible paragraphs.
+                            محتوى موجه للآباء يشرح المفاهيم المعقدة بفقرات موجزة وسهلة الوصول.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1Ig_NkkA5szjlV59RliOEC1lc7A9OHl_5z6nWTn5K5m0/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478648&usg=AOvVaw25ch1n6D_ZurjYMhDkCJBY" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1Ig_NkkA5szjlV59RliOEC1lc7A9OHl_5z6nWTn5K5m0/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478648&usg=AOvVaw25ch1n6D_ZurjYMhDkCJBY"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1183,14 +1622,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 17
+                            المشروع 17
                         </h3>
                         <p class="project-description">
-                            Long-form series featuring warm introductions and conclusions that drive action.
+                            سلسلة طويلة تتميز بمقدمات وخواتيم دافئة تدفع للعمل.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1p7VNpme6ntXJH552Bm0cFyt_e8p89ETW_gdmmtDwVqU/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478783&usg=AOvVaw0cda78giwDdf6jpjGOsvbw" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1p7VNpme6ntXJH552Bm0cFyt_e8p89ETW_gdmmtDwVqU/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478783&usg=AOvVaw0cda78giwDdf6jpjGOsvbw"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1200,14 +1640,15 @@
                     <div class="project-content">
                         <h3 class="project-title">
                             <i class="fas fa-external-link-alt"></i>
-                            Project 18
+                            المشروع 18
                         </h3>
                         <p class="project-description">
-                            Business-focused content emphasizing ROI and quantified outcomes.
+                            محتوى موجه للأعمال يركز على العائد على الاستثمار والنتائج المحددة كمياً.
                         </p>
                         <div class="project-links">
-                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1K7ybV_zV4arbn-aiC0l5StE8ZIY-CkFXchabd0j6W4g/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478935&usg=AOvVaw1WrkGwxFTipW73UzHLFNlY" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-eye"></i> View project
+                            <a href="https://www.google.com/url?q=https://docs.google.com/document/d/1K7ybV_zV4arbn-aiC0l5StE8ZIY-CkFXchabd0j6W4g/edit?usp%3Ddrivesdk&sa=D&source=editors&ust=1764005438478935&usg=AOvVaw1WrkGwxFTipW73UzHLFNlY"
+                                class="project-link" target="_blank" rel="noopener">
+                                <i class="fas fa-eye"></i> عرض المشروع
                             </a>
                         </div>
                     </div>
@@ -1219,7 +1660,7 @@
     <section id="contact" class="section">
         <div class="container">
             <div class="section-header">
-                <h2>Contact – Get in Touch</h2>
+                <h2>تواصل معي</h2>
             </div>
             <div class="contact-container">
                 <div class="contact-info">
@@ -1228,7 +1669,7 @@
                             <i class="fas fa-phone"></i>
                         </div>
                         <div class="contact-text">
-                            <h4>Phone</h4>
+                            <h4>الهاتف</h4>
                             <p>0533295006</p>
                         </div>
                     </div>
@@ -1237,7 +1678,7 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-text">
-                            <h4>Email</h4>
+                            <h4>البريد الإلكتروني</h4>
                             <p>Osoosshehab@gmail.com</p>
                         </div>
                     </div>
@@ -1246,24 +1687,41 @@
         </div>
     </section>
 
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="lightbox-nav lightbox-next" id="lightbox-next">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img src="" alt="عرض الصورة" id="lightbox-img">
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Osama Shehab</h3>
-                    <p>Content writer helping brands leave a lasting impression with the written word.</p>
+                    <h3>أسامة شهاب</h3>
+                    <p>كاتب محتوى يساعد العلامات التجارية على ترك انطباع دائم بالكلمة المكتوبة.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Quick Links</h3>
+                    <h3>روابط سريعة</h3>
                     <ul class="footer-links">
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#about">عني</a></li>
+                        <li><a href="#skills">المهارات</a></li>
+                        <li><a href="#gallery">معرض الأعمال</a></li>
+                        <li><a href="#services">الخدمات</a></li>
+                        <li><a href="#contact">تواصل معي</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Connect</h3>
+                    <h3>تواصل</h3>
                     <div class="social-links">
                         <a href="mailto:Osoosshehab@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
                         <a href="tel:0533295006" class="social-link"><i class="fas fa-phone"></i></a>
@@ -1271,7 +1729,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Osama Shehab. All rights reserved.</p>
+                <p>&copy; 2025 أسامة شهاب. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
@@ -1313,6 +1771,111 @@
         skillBars.forEach(bar => {
             skillObserver.observe(bar);
         });
+
+        // Gallery Filter Functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filterValue === 'all') {
+                        item.classList.remove('hide');
+                    } else {
+                        if (item.getAttribute('data-category') === filterValue) {
+                            item.classList.remove('hide');
+                        } else {
+                            item.classList.add('hide');
+                        }
+                    }
+                });
+            });
+        });
+
+        // Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+
+        let currentImageIndex = 0;
+        let visibleImages = [];
+
+        // Update visible images based on current filter
+        function updateVisibleImages() {
+            visibleImages = Array.from(galleryItems).filter(item => !item.classList.contains('hide'));
+        }
+
+        // Open lightbox
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                // Skip link items (external links)
+                if (item.classList.contains('link-item')) {
+                    return;
+                }
+
+                e.preventDefault();
+                updateVisibleImages();
+                currentImageIndex = visibleImages.indexOf(item);
+                const imgSrc = item.querySelector('img').src;
+                lightboxImg.src = imgSrc;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+
+        // Close lightbox
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Navigate to previous image
+        lightboxPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + visibleImages.length) % visibleImages.length;
+            const imgSrc = visibleImages[currentImageIndex].querySelector('img').src;
+            lightboxImg.src = imgSrc;
+        });
+
+        // Navigate to next image
+        lightboxNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex + 1) % visibleImages.length;
+            const imgSrc = visibleImages[currentImageIndex].querySelector('img').src;
+            lightboxImg.src = imgSrc;
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowLeft') {
+                lightboxNext.click();
+            } else if (e.key === 'ArrowRight') {
+                lightboxPrev.click();
+            }
+        });
     </script>
 </body>
+
 </html>
